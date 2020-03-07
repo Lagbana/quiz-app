@@ -70,7 +70,7 @@ function quizBody(questionNumber) {
         // optionBtn.setAttribute('class', 'question btn btn-primary mb-3') //STYLING
         optionBtn.addEventListener("click", function (event) {
             event.preventDefault();
-            // quizBody(questionNumber + 1)
+            quizBody(questionNumber + 1)
         })
         option.appendChild(optionBtn)
         optionList.appendChild(option)
