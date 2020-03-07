@@ -3,31 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
-<div class='navbar'>
-    <div id='highscore'>
-        <p>View Highscores</p>
+<header class='navbar'>
+    <div id='highscore' class="float-left">
+       <p>View Highscores</p>
     </div>
-    <div id='timer'>
-        <p>Time Left: </p>
+    <div id='timer' class="float-right">
+       <p>Time Left: <span>60</span></p>  
     </div>
-</div>
+</Header>
 
-<main id='maincontent'>
+<main id='maincontent' class='container col-6 mt-5'>
 <h1>World Trivia Quiz Challenge</h1>
 <div>
-    <p>These questions test your knowledge of world map, geographical features, countries, and more. Note that this quiz is timed and incorrect answers lead
-    to a time deduction. At the end of the quiz, you can save your score with your name and see where you rank with other quiz takers. Best of luck!
+    <p>These questions test your knowledge of the world map, geographical features, countries, and more. Note that this quiz is timed and each incorrect answer leads
+    to a 10 seconds time deduction. At the end of the quiz, you can save your score with your name and see where you rank with other quiz takers. Best of luck!
     </p>
 </div>
 <div>
-    <button id="startbutton">Start Quiz</button>
+    <button id="startbutton" class="btn btn-primary">Start Quiz</button>
 </div>
 
 </main>
-<script src = "./quizzer.js"></script>    
+<script src = "./quizzer.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>    
 </body>
 </html>
