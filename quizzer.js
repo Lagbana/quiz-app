@@ -62,12 +62,12 @@ function quizBody(questionNumber) {
     optionList.setAttribute('class', 'list-unstyled')
     optionsContainer.appendChild(optionList)
     // Create lists of choices
-    // Use for loop to create option list and option button
+    // Use for loop to create option buttons and lead to next question on option button click
     for (let i = 0; i < quizContent[questionNumber]['options'].length; i++) {
         const option = document.createElement('li')
         const optionBtn = document.createElement('button')
         optionBtn.textContent = quizContent[questionNumber]['options'][i]
-        // optionBtn.setAttribute('class', 'question btn btn-primary mb-3') //STYLING
+        optionBtn.setAttribute('class', 'question btn btn-primary mb-3')
         optionBtn.addEventListener("click", function (event) {
             event.preventDefault();
             quizBody(questionNumber + 1)
