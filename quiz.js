@@ -48,11 +48,44 @@ function timer () {
   
       if(totalTime === 0) {
         clearInterval(timerInterval);
+        alert('Time is up!')
         // Execute High Scores Summary Page                                                                    //TO DO
       }
   
     }, 1000);
   }
+
+function firstQuestion () {
+        // Create new question section
+        const questionSection = document.createElement('section')
+        questionSection.setAttribute('id', 'questions-page')
+        mainContent.appendChild(questionSection)
+
+        // Create question h2 element and display question 1
+        const question = document.createElement('h2')
+        question.textContent = quizContent[0]['question']
+        questionSection.appendChild(question)   
+
+        // Create possible answers Container
+        const optionsContainer = document.createElement('div')
+        optionsContainer.setAttribute('class', 'mt-3')
+        questionSection.appendChild(optionsContainer)
+
+        // Create unordered list
+        const answersList = document.createElement('ul')
+        answersList.setAttribute('class', 'list-unstyled')
+        optionsContainer.appendChild(answersList)
+
+        // Get all the possible answer options for question 1
+        for (i = 0; i < quizContent[0]['options'].length; i++) {
+            const option = document.createElement('li')
+            const optionBtn = document.createElement('button')
+            optionBtn.textContent = quizContent[0]['options'][i]
+            optionBtn.setAttribute('class', 'question btn btn-primary mb-3')
+            option.appendChild(optionBtn)
+            answersList.appendChild(option)
+        }
+}  
 
 function quizBody () {
     // Hide original start page
@@ -61,6 +94,9 @@ function quizBody () {
     // Display time once quiz begins with start time set to 60 seconds
     timeContainer.style.display = 'block'
     timer()
+
+    // Display question 1
+    firstQuestion()
 
 
 
@@ -72,6 +108,5 @@ function quizBody () {
 
 startButton.addEventListener("click", function (event) {
     event.preventDefault();
-    console.log(quizContent[0]['question'])
     quizBody()
 })
