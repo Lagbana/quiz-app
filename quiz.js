@@ -44,21 +44,21 @@ let question5 = {
 let quizContent = [question1, question2, question3, question4, question5]
 
 // Global variables
-let currentQuestion = 0, score = 0, totalTime = 70
+let currentQuestion = 0, score = 0, currentTime = 70
 
 
 // Timer function
 function timer() {                                                                                       //TO DO: Execute Summary Page
     let timerInterval = setInterval(function () {
-        totalTime--;
-        timeLeft.textContent = totalTime
+        currentTime--;
+        timeLeft.textContent = currentTime
 
-        if (totalTime === 0) {
+        if (currentTime === 0) {
             clearInterval(timerInterval);
-            alert('Time is up!')
-            // Execute High Scores Summary Page                                                                    //TO DO: Execute Summary Page
+            // alert('Time is up!')
+            delay(true)
+            
         }
-
     }, 1000);
 }
 
@@ -82,19 +82,21 @@ function scoreCounter(str, correctStr) {
         msg.textContent = 'Wrong Answer!'
         msg.setAttribute('class', 'btn btn-danger font-italic')
         resultMessage.appendChild(msg)
+        currentTime = currentTime - 10
     }
 }
 
 // Delay: Clears the question but allows user to see result message before next question  
-
 function delay(show) {
     setTimeout(function () {
         resultMessage.innerHTML = ""
         mainContent.innerHTML = ""
-        if (currentQuestion < 5) question(currentQuestion, 0)
+        if (currentQuestion < 5 && currentTime > 0) question(currentQuestion, 0)
         if (show) summaryPage.setAttribute('style', 'display: block;')
-    }, 100)
+    }, 500)
 }
+
+// 
 
 // summary page for saved user score
 function saveUserScore(event) {
@@ -117,7 +119,6 @@ function changeQuestion(event) {
     if (currentQuestion > 4) {
         userName.addEventListener('click', saveUserScore)
         delay(true)
-        console.log("Quiz End")
         return
     }
     delay(false)
