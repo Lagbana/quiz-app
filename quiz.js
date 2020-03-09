@@ -97,13 +97,13 @@ function delay(show) {
 }
 
 // summary page for saved user score
-// function saveUserScore(event) {
-//     event.preventDefault()
-//     const userInput = document.querySelector('#user-input')
-//     localStorage.setItem('score', JSON.stringify({ name: userInput.value, score })) //Saving total score in Local Storage
-//     userInput.value = ''
+function saveUserScore(event) {
+    event.preventDefault()
+    const userInput = document.querySelector('#user-input')
+    localStorage.setItem('score', JSON.stringify({ name: userInput.value, score })) //Saving total score in Local Storage
+    userInput.value = ''
 
-// }
+}
 
 // Change question
 function changeQuestion(event) {
