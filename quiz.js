@@ -87,23 +87,23 @@ function scoreCounter(str, correctStr) {
 
 // Delay: Clears the question but allows user to see result message before next question  
 
-// function delay(show) {
-//     // setTimeout(function () {
-//     //     resultMessage.innerHTML = ""
-//     //     mainContent.innerHTML = ""
-//     //     if (currentQuestion < 5) question(currentQuestion, 0)
-//     //     if (show) summaryPage.setAttribute('style', 'display: block;')
-//     // }, 100)
-// }
+function delay(show) {
+    setTimeout(function () {
+        resultMessage.innerHTML = ""
+        mainContent.innerHTML = ""
+        if (currentQuestion < 5) question(currentQuestion, 0)
+        if (show) summaryPage.setAttribute('style', 'display: block;')
+    }, 100)
+}
 
 // summary page for saved user score
-function saveUserScore(event) {
-    event.preventDefault()
-    const userInput = document.querySelector('#user-input')
-    localStorage.setItem('score', JSON.stringify({ name: userInput.value, score })) //Saving total score in Local Storage
-    userInput.value = ''
+// function saveUserScore(event) {
+//     event.preventDefault()
+//     const userInput = document.querySelector('#user-input')
+//     localStorage.setItem('score', JSON.stringify({ name: userInput.value, score })) //Saving total score in Local Storage
+//     userInput.value = ''
 
-}
+// }
 
 // Change question
 function changeQuestion(event) {
@@ -116,11 +116,11 @@ function changeQuestion(event) {
     currentQuestion++
     if (currentQuestion > 4) {
         userName.addEventListener('click', saveUserScore)
-        // delay(true)
+        delay(true)
         console.log("Quiz End")
         return
     }
-    // delay(false)
+    delay(false)
 
 }
 
