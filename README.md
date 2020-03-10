@@ -21,7 +21,7 @@ https://lagbana.github.io/quiz-app/
 ## Demo
 
 #### Quiz attempt
-![Quiz-Attempt](/resources/Quiz Attempt.gif)
+https://github.com/Lagbana/quiz-app/blob/master/resources/Quiz%20Attempt.gif
 
 #### Restart Quiz
 ![Restart-Quiz](/resources/Quiz Restart.gif)
