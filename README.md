@@ -21,13 +21,13 @@ https://lagbana.github.io/quiz-app/
 ## Demo
 
 #### Quiz attempt
-resources/Quiz Attempt.gif
+![Quiz-Attempt](resources/Quiz%20Attempt.gif)
 
 #### Restart Quiz
-![Restart-Quiz](/resources/Quiz Restart.gif)
+![Restart-Quiz](/resources/Quiz%20Restart.gif)
 
 #### View highscores
-![View-Highscores](/resources/Quiz View Highscores.gif)
+![View-Highscores](/resources/Quiz%20View%20Highscores.gif)
 
 #### Clear Highscores
-![Clear-Scores](/resources/Quiz Clear.gif)
+![Clear-Scores](/resources/Quiz%20Clear.gif)
