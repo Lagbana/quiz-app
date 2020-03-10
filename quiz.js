@@ -2,12 +2,19 @@
 const startButton = document.querySelector('#startbutton')
 const mainContent = document.querySelector('#maincontent')
 const startPage = document.querySelector('#start-page')
-const highScores = document.querySelector('#highscore')
+const viewScores = document.querySelector('#view-scores')
 const timeContainer = document.querySelector('#time-container')
 const timeLeft = document.querySelector('#time')
 const resultMessage = document.querySelector('#result-message')
 const summaryPage = document.querySelector('#summary-page')
-const userName = document.querySelector('#username')
+const userName = document.querySelector('#username') //Submit button of username input
+const inputForm = document.querySelector('#input-form')
+const displayScore = document.querySelector('#display-score')
+const highScores = document.querySelector('#high-scores')
+const restart = document.querySelector('#restart')
+const clear = document.querySelector('#clear-scores')
+const rankedScores = document.querySelector('#score-rank')
+
 
 
 //Question objects
@@ -37,30 +44,54 @@ let question4 = {
 
 let question5 = {
     question: "Question 5: In what continent is Papua New Guinea located?",
-    options: ["1. Africa", "2. Australia", "3. South America", "4. Antarctica"],
+    options: ["1. Africa", "2. Oceania", "3. South America", "4. Antarctica"],
     answer: 1
 }
 // Array of question objects
 let quizContent = [question1, question2, question3, question4, question5]
 
 // Global variables
-let currentQuestion = 0, score = 0, currentTime = 70
+let currentQuestion = 0, score = 0, currentTime = 70, scoresArray = []
 
+viewScores.addEventListener('click', function (event) {
+    event.preventDefault()
+    highScores.setAttribute('style', 'display: block;')
+    currentQuestion = 0
+    score = 0
+    currentTime = 70
+    timeLeft.textContent = 70
+    timer()
+    clearInterval()
+    startPage.setAttribute('style', 'display: none;')
+    mainContent.setAttribute('style', 'display: none;')
+    resultMessage.setAttribute('style', 'display: none;')
+    summaryPage.setAttribute('style', 'display: none;')
+})
 
 // Timer function
-function timer() {                                                                                       //TO DO: Execute Summary Page
+function timer(end) {                                                                                       //TO DO: Execute Summary Page
     let timerInterval = setInterval(function () {
         currentTime--;
         timeLeft.textContent = currentTime
 
-        if (currentTime === 0) {
+        if (end) {
             clearInterval(timerInterval);
-            // alert('Time is up!')
-            delay(true)
-            
         }
-    }, 1000);
+
+        if (currentTime === 0 && currentQuestion < 5) {
+            alert('Quiz Over!')
+            clearInterval(timerInterval);
+            delay(true)
+        } else if (currentQuestion > 4) {
+            alert('Quiz Complete!')
+            clearInterval(timerInterval);
+            delay(true)
+        } 
+
+    }, 1000)
+
 }
+
 
 // Score Counter Function
 function scoreCounter(str, correctStr) {
@@ -92,19 +123,87 @@ function delay(show) {
         resultMessage.innerHTML = ""
         mainContent.innerHTML = ""
         if (currentQuestion < 5 && currentTime > 0) question(currentQuestion, 0)
-        if (show) summaryPage.setAttribute('style', 'display: block;')
-    }, 500)
+        if (show) {
+            displayScore.innerText = score
+            summaryPage.setAttribute('style', 'display: block;')
+            timeContainer.setAttribute('style', 'display: none;')
+        }
+    }, 1000)
 }
 
-// 
+function restartQuiz() {
+    restart.addEventListener('click', function (event) {
+        event.preventDefault()
+        highScores.setAttribute('style', 'display: none;')
+        currentQuestion = 0
+        score = 0
+        currentTime = 70
+        timeLeft.textContent = 70
+        timer()
+        clearInterval()
+        startPage.setAttribute('style', 'display: block;')
+    })
+}
+
+function clearScores() {
+    clear.addEventListener('click', function () {
+        setInterval(function () {
+        localStorage.clear()
+        
+    
+        }, 1000)
+        // highScores.setAttribute('style', 'display: block;')  
+    })
+}
+
+// View high scores page
+function viewHighscores() {
+
+    // event.preventDefault()
+    summaryPage.setAttribute('style', 'display: none;')
+
+
+
+
+    highScores.setAttribute('style', 'display: block;')
+    restartQuiz()
+    clearScores()
+
+
+}
 
 // summary page for saved user score
-function saveUserScore(event) {
+function saveUserScore() {
     event.preventDefault()
-    const userInput = document.querySelector('#user-input')
-    localStorage.setItem('score', JSON.stringify({ name: userInput.value, score })) //Saving total score in Local Storage
+    const userInput = document.querySelector('#user-input') //use if statement to deal with no entry of name
+    const scoreObject = {
+        name: userInput.value,
+        userScore: score
+    }
+    scoresArray.push(scoreObject)
+    scoresArray.sort(function (a, b) {
+        return b.userScore - a.userScore
+    });
+    //clear score input page
     userInput.value = ''
-
+    localStorage.setItem('userInfo', JSON.stringify(scoresArray)) //Saving total score in Local Storage
+    const objectCollect = localStorage.getItem('userInfo')
+    const objectArray = JSON.parse(objectCollect)
+    //clear empty lists
+    rankedScores.innerHTML = ''
+    if (!Array.isArray(objectArray) || !objectArray.length) {
+        let noScores = document.createElement('div')
+        noScores.textContent = 'No scores to display'
+        rankedScores.appendChild(noScores)
+    } else {
+        // Show all scores till localstorage is cleared
+        for (let i = 0; i < objectArray.length; i++) {
+            let playerScore = document.createElement("li");
+            playerScore.textContent = objectArray[i].name + " - " + objectArray[i].userScore;
+            rankedScores.appendChild(playerScore);
+        }
+    }
+    viewHighscores()
 }
 
 // Change question
@@ -118,16 +217,14 @@ function changeQuestion(event) {
     currentQuestion++
     if (currentQuestion > 4) {
         userName.addEventListener('click', saveUserScore)
-        delay(true)
+        // delay(true)
         return
     }
     delay(false)
 
 }
 
-
-function question(qIndex, aIndex) {                                //TO DO: Explain qIndex and aIndex in ReadMe   &&   Execute Summary Page  && Score Counter
-
+function question(qIndex, aIndex) {                                //TO DO: Explain qIndex and aIndex in ReadMe 
     // Create new question section
     const questionSection = document.createElement('section')
     questionSection.setAttribute('id', 'questions-page')
@@ -163,10 +260,10 @@ function question(qIndex, aIndex) {                                //TO DO: Expl
 // Executes the question pages
 function quizBody() {
     // Hide original start page
-    startPage.style.display = 'none'
+    startPage.setAttribute('style', 'display: none;')
 
-    // Display time once quiz begins with start time set to 60 seconds
-    timeContainer.style.display = 'block'
+    // Display time once quiz begins with start time set to 70 seconds
+    timeContainer.setAttribute('style', 'display: block;')
     timer()
 
     // Display question 1

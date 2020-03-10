@@ -11,23 +11,40 @@
 
 <body>
     <header class='navbar navbar-light bg-light'>
-        <div id='highscore' class="float-left">
-            <p>View Highscores</p>
+        <div class="float-left ml-4">
+            <a href="#" id='view-scores'>View Highscores</a>
         </div>
         <div id='time-container' class='float-right' style='display: none;'>
-            Time Left: <span id="time">60</span>
+            Time Left: <span id="time">70</span>
         </div>
     </Header>
 
+    <!-- Landing page -->
+    <section id="start-page" class="container col-6 mt-5 text-center" style='display: block;'>
+        <h1>World Trivia Quiz Challenge</h1>
+        <div>
+            <p> Note that this quiz is timed and each incorrect answer leads
+                to a 10 seconds time deduction. At the end of the quiz, you can save your score with your name and
+                see where you rank with other quiz takers.
+            </p>
+        </div>
+        <div>
+            <button id="startbutton" class="btn btn-primary">Start Quiz</button>
+        </div>
+    </section>
+    <!-- Contains the question objects when appended by JS -->
     <main id='maincontent' class='container col-6 mt-5'>
     </main>
+
+    <!-- Section used for result alert buttons -->
     <section id='result-message'>
     </section>
 
-    <section id='summary-page' class='container col-4 mx-auto align-middle p-5' style='display: none;'>
-        <h4 class = 'font-weight-bold mt-5'>All Done!</h4>
-        <p>Your final score is <span id='display-score'></span> .</p>
-        <form class="form-inline">
+    <!-- Summary page for viewing user score -->
+    <section id='summary-page' class='container col-8 col-xl-4 mx-auto align-middle p-5' style='display: none;'>
+        <h4 class='font-weight-bold mt-5'>All Done!</h4>
+        <p>Your final score is <span id='display-score'></span>.</p>
+        <form id="input-form" class="form-inline">
             Enter Name:
             <div class="form-group mx-sm-2 mb-2">
                 <input type='text' class="form-control" id="user-input" placeholder="Your name">
@@ -36,19 +53,20 @@
         </form>
     </section>
 
+    <!-- High scores page -->
+    <section id='high-scores' class='container col-8 col-xl-4 mx-auto align-middle p-5' style='display: none;'>
+        <h4 class='font-weight-bold mt-5 align-middle'>Highscores</h4>
+        <div class="form-group mx-sm-2 mb-2">
+                <ol id='score-rank'>
 
-    <section id="start-page" class="container col-6 mt-5 text-center" style='display: block;'>
-        <h1>World Trivia Quiz Challenge</h1>
-        <div>
-            <p> Note that this quiz is timed and each incorrect answer leads
-                to a 10 seconds time deduction. At the end of the quiz, you can save your score with your name and
-                see where you rank with other quiz takers. Best of luck!
-            </p>
+                </ol>
         </div>
-        <div>
-            <button id="startbutton" class="btn btn-primary">Start Quiz</button>
-        </div>
+        <form class="form-inline">
+            <button id='restart' class="btn btn-primary mb-2 mx-3">Restart</button>
+            <button id='clear-scores' class="btn btn-primary mb-2">Clear</button>
+        </form>
     </section>
+
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
