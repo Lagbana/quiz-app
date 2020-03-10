@@ -1,8 +1,8 @@
 # Quiz app 
-### working with Web APIs
+### Focus: Working with Web APIs
 The final product is a timed multiple choice quiz
 
-# Link to project
+# Link: view project
 https://lagbana.github.io/quiz-app/
 
 
