@@ -77,7 +77,6 @@ function timer(end) {                                                           
         if (end) {
             clearInterval(timerInterval);
         }
-
         if (currentTime === 0 && currentQuestion < 5) {
             alert('Quiz Over!')
             clearInterval(timerInterval);
@@ -148,28 +147,18 @@ function restartQuiz() {
 function clearScores() {
     clear.addEventListener('click', function () {
         setInterval(function () {
-        localStorage.clear()
-        
-    
+        localStorage.clear()           
         }, 1000)
-        // highScores.setAttribute('style', 'display: block;')  
     })
 }
 
 // View high scores page
 function viewHighscores() {
 
-    // event.preventDefault()
     summaryPage.setAttribute('style', 'display: none;')
-
-
-
-
     highScores.setAttribute('style', 'display: block;')
     restartQuiz()
     clearScores()
-
-
 }
 
 // summary page for saved user score
@@ -217,7 +206,6 @@ function changeQuestion(event) {
     currentQuestion++
     if (currentQuestion > 4) {
         userName.addEventListener('click', saveUserScore)
-        // delay(true)
         return
     }
     delay(false)
