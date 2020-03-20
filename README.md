@@ -1,9 +1,13 @@
-# Quiz app 
-### Focus: Working with Web APIs
-The final product is a timed multiple choice quiz
+# Quiz app
 
-# Link: view project
+### Outcome
+Product: a fully responsive timed multiple choice quiz
+
+Learning: working with APIs
+
+## Link: view product
 https://lagbana.github.io/quiz-app/
+
 
 
 ## Functional Requirements
@@ -14,9 +18,10 @@ https://lagbana.github.io/quiz-app/
 5. The quiz ends when all the questions are answered or time runs out.
 6. At the end of the quiz the timer stops, the user sees the final score and is directed to input a username
 7. When the user submits a user name, they see:
-    - a list of highscores of all user attempts ranked from highest points to lowest
-    - a button to restart the quiz
-    - a clear button to empty the highscores list
+- a list of highscores of all user attempts ranked from highest points to lowest
+- a button to restart the quiz
+- a clear button to empty the highscores list
+
 
 ## Demo
 
